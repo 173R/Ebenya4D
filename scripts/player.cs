@@ -26,6 +26,7 @@ public partial class player : CharacterBody3D
 	private const float SprintSpeed = 7.0f;
 	private const float CrouchSpeed = 3.0f;
 	private const float LerpSpeed = 10.0f;
+	private const float AirLerpSpeed = 1.0f;
 	
 	private float _currentSpeed = WalkSpeed;
 
@@ -104,10 +105,10 @@ public partial class player : CharacterBody3D
 		
 		if (Input.IsActionPressed("crouch"))
 		{
-			_currentSpeed = CrouchSpeed;
+			_currentSpeed = Mathf.Lerp(_currentSpeed, CrouchSpeed, (float)delta * LerpSpeed);
 			
 			// Высота головы при пресидании
-			newPosition.Y =Mathf.Lerp(newPosition.Y, CrouchDepth, (float)delta * LerpSpeed);
+			newPosition.Y = Mathf.Lerp(newPosition.Y, CrouchDepth, (float)delta * LerpSpeed);
 			_head.Position = newPosition;
 
 			// Подмена коллизий
@@ -130,14 +131,14 @@ public partial class player : CharacterBody3D
 			
 			if (Input.IsActionPressed("sprint"))
 			{
-				_currentSpeed = SprintSpeed;
+				_currentSpeed = Mathf.Lerp(_currentSpeed, SprintSpeed, (float)delta * LerpSpeed);
 				
 				_isWalk = false;
 				_isSprint = true;
 				_isCrouch = false;
 			} else
 			{
-				_currentSpeed = WalkSpeed;
+				_currentSpeed = Mathf.Lerp(_currentSpeed, WalkSpeed, (float)delta * LerpSpeed);;
 				
 				_isWalk = true;
 				_isSprint = false;
@@ -179,15 +180,22 @@ public partial class player : CharacterBody3D
 		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 			velocity.Y = JumpVelocity;
-
+		
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		var inputDir = Input.GetVector("left", "right", "forward", "backward");
-		_direction = _direction.Lerp(
-			(Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized(),
-			(float)delta * LerpSpeed
-		);
 		
+		if (IsOnFloor())
+			_direction = _direction.Lerp(
+				(Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized(),
+				(float)delta * LerpSpeed
+			);
+		else
+			if (inputDir != Vector2.Zero)
+				_direction = _direction.Lerp(
+					(Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized(),
+					(float)delta * AirLerpSpeed
+				);
 		
 		if (_direction != Vector3.Zero)
 		{
