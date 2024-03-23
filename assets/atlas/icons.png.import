@@ -2,21 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ya3tevjuqe5v"
-path.s3tc="res://.godot/imported/Material__129_baseColor.png-b85e252b65eb2214c90b965da1683b33.s3tc.ctex"
+uid="uid://dk7heorgko886"
+path="res://.godot/imported/icons.png-2b1d7de4f79ff162c5e4a204e759a96a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/models/zil/textures/Material__129_baseColor.png"
-dest_files=["res://.godot/imported/Material__129_baseColor.png-b85e252b65eb2214c90b965da1683b33.s3tc.ctex"]
+source_file="res://assets/atlas/icons.png"
+dest_files=["res://.godot/imported/icons.png-2b1d7de4f79ff162c5e4a204e759a96a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
