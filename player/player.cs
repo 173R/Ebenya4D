@@ -178,7 +178,7 @@ public partial class player : CharacterBody3D
 			velocity.Y -= gravity * (float)delta;
 
 		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
+		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor() && !_crouchRayCast.IsColliding())
 			velocity.Y = JumpVelocity;
 		
 		// Get the input direction and handle the movement/deceleration.
