@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://b14f5b424rl1y"]
+
+[ext_resource type="Script" path="res://interactable/storage.gd" id="1_iylnl"]
+[ext_resource type="Texture2D" uid="uid://8vurs3hsmgil" path="res://assets/kenny_grid/Orange/texture_01.png" id="1_lgrau"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0xen"]
+albedo_texture = ExtResource("1_lgrau")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_evati"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_j0xen")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_04xuo"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[node name="Storage" type="StaticBody3D" groups=["external_inventory"]]
+collision_layer = 5
+collision_mask = 0
+script = ExtResource("1_iylnl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_evati")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("ConcavePolygonShape3D_04xuo")

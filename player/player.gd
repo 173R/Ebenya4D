@@ -7,9 +7,12 @@ extends CharacterBody3D
 @onready var default_collision_shape = $default_collision_shape
 @onready var crouch_collision_shape = $crouch_collision_shape
 @onready var crouch_raycast = $crouch_raycast
+@onready var interact_ray: RayCast3D = $neck/head/Camera3D/InteractRay
 
 # Инвентарь
-@export var invetory_data: InventoryData
+@export var inventory_data: InventoryData
+@export var equip_inventory_data: InventoryDataEquip
+
 signal toggle_inventory()
 
 # Controls
@@ -37,16 +40,20 @@ var gravity                 = ProjectSettings.get_setting("physics/3d/default_gr
 var current_speed: float    = WALK_SPEED
 var free_look_amount: float = -5.0
 
+var health: int = 100
 
 func _ready():
+	PlayerManager.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 # Перехватывает событие только в том случае если его никто до этого ещё не перехватил
-func _unhandled_input(_event):
+func _unhandled_input(event):
 	if Input.is_action_just_pressed("inventory"):
 		toggle_inventory.emit()
 
-func _input(event):
+	if Input.is_action_just_pressed("interact"):
+		interact()
+
 	if event is InputEventMouseMotion:
 		if is_free_look:
 			neck.rotate_y(-deg_to_rad(event.relative.x * MOUSE_SENSE))
@@ -133,3 +140,15 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
+
+# Получается это универсальная функция взаимодействия с чем угодно
+func interact() -> void:
+	if interact_ray.is_colliding():
+		interact_ray.get_collider().player_interact()
+		#print("interact with ", interact_ray.get_collider())
+
+func get_item_drop_position() -> Vector3:
+	return camera.global_position - camera.global_transform.basis.z
+
+func heal(heal_value: int):
+	health += heal_value

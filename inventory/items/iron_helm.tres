@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemDataEquip" load_steps=4 format=3 uid="uid://pduq45et4j1k"]
+
+[ext_resource type="Script" path="res://inventory/item/item_data_equip.gd" id="1_684fx"]
+[ext_resource type="Texture2D" uid="uid://dk7heorgko886" path="res://assets/atlas/icons.png" id="2_wt6hg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ym3sx"]
+atlas = ExtResource("2_wt6hg")
+region = Rect2(32, 224, 32, 32)
+
+[resource]
+script = ExtResource("1_684fx")
+defence = 1
+name = "iron helm"
+description = "Желечный шмелм"
+stackable = false
+texture = SubResource("AtlasTexture_ym3sx")

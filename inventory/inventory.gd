@@ -6,11 +6,13 @@ const Slot = preload("res://inventory/slot/slot.tscn")
 @onready var item_grid : GridContainer = $MarginContainer/ItemGrid
 
 func set_inventory_data(inventory_data: InventoryData):
+	inventory_data.inventory_update.connect(populate_item_grid)
 	# Заполняем ui на основе мета инфы
 	populate_item_grid(inventory_data)
 
 # Заполняет сетку эелментов слотами
 func populate_item_grid(inventory_data: InventoryData) -> void:
+	print("update inventory")
 	# Отчищаем от дочерних элементов
 	for	child in item_grid.get_children():
 		child.queue_free()
@@ -26,3 +28,6 @@ func populate_item_grid(inventory_data: InventoryData) -> void:
 		# Заполняем слот данными
 		if slot_data:
 			slot.set_slot_data(slot_data)
+
+func clear_inventory_data(inventory_data: InventoryData):
+	inventory_data.inventory_update.disconnect(populate_item_grid)
