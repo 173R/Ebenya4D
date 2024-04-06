@@ -1,0 +1,239 @@
+[gd_scene load_steps=19 format=3 uid="uid://bp6cx7vliytg5"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_cw0i3"]
+[ext_resource type="PackedScene" uid="uid://0id2dhy2cbfm" path="res://assets/models/rifle/rifle.glb" id="2_4vcoe"]
+[ext_resource type="Texture2D" uid="uid://cvq2xxt3uoc4d" path="res://addons/kenney_particle_pack/star_06.png" id="3_2phsp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jb4or"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0ml2b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ixve"]
+height = 1.2
+
+[sub_resource type="Gradient" id="Gradient_7d61u"]
+offsets = PackedFloat32Array(0, 0.159817, 0.986301)
+colors = PackedColorArray(0, 0, 0, 0, 0.972549, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nahhy"]
+gradient = SubResource("Gradient_7d61u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xh8am"]
+angle_min = 45.0
+angle_max = 45.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_nahhy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g1an0"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.996078, 0.968627, 0.631373, 1)
+albedo_texture = ExtResource("3_2phsp")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r6f25"]
+material = SubResource("StandardMaterial3D_g1an0")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[sub_resource type="Animation" id="Animation_ppkmw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Head/Camera/Rifle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.169229, -0.0962698, -0.438648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Head/Camera/Rifle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qbq56"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Head/Camera/Rifle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.169229, -0.0962698, -0.438648), Vector3(0.169229, -0.122915, -0.438648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Head/Camera/Rifle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0492881, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2hyb0"]
+resource_name = "move"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Head/Camera/Rifle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0.169229, -0.0962698, -0.438648), Vector3(0.169, -0.082, -0.439), Vector3(0.169229, -0.0962698, -0.438648), Vector3(0.190815, -0.106963, -0.438648)]
+}
+
+[sub_resource type="Animation" id="Animation_pt7e7"]
+resource_name = "move_2"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Head/Camera/Rifle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(0.5, 2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0.169229, -0.0962698, -0.438648), Vector3(0.13838, -0.105376, -0.441001), Vector3(0.169229, -0.0962698, -0.438648), Vector3(0.213617, -0.109941, -0.441142)]
+}
+
+[sub_resource type="Animation" id="Animation_bc8qf"]
+resource_name = "shoot"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Neck/Head/Camera/Rifle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.169229, -0.0962698, -0.34161), Vector3(0.169229, -0.0962698, -0.438648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Neck/Head/Camera/Rifle:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.0974941, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_voehc"]
+_data = {
+"RESET": SubResource("Animation_ppkmw"),
+"idle": SubResource("Animation_qbq56"),
+"move": SubResource("Animation_2hyb0"),
+"move_2": SubResource("Animation_pt7e7"),
+"shoot": SubResource("Animation_bc8qf")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_t7pp6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Neck:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("Neck/Head/Camera:rotation")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_cw0i3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_jb4or")
+
+[node name="IdleCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_0ml2b")
+
+[node name="CrouchCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600287, 0)
+shape = SubResource("CapsuleShape3D_3ixve")
+disabled = true
+
+[node name="CrouchRaycast" type="RayCast3D" parent="."]
+target_position = Vector3(0, 2, 0)
+
+[node name="Neck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Head" type="Node3D" parent="Neck"]
+
+[node name="Camera" type="Camera3D" parent="Neck/Head"]
+
+[node name="Rifle" parent="Neck/Head/Camera" instance=ExtResource("2_4vcoe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.169229, -0.0962698, -0.438648)
+
+[node name="MuzzleFlash" type="GPUParticles3D" parent="Neck/Head/Camera/Rifle"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0424336, -0.868099)
+emitting = false
+amount = 1
+lifetime = 0.24
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_xh8am")
+draw_pass_1 = SubResource("PlaneMesh_r6f25")
+
+[node name="RayCast3D" type="RayCast3D" parent="Neck/Head/Camera"]
+target_position = Vector3(0, 0, -50)
+collision_mask = 2
+debug_shape_custom_color = Color(0.333333, 0, 0.180392, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_voehc")
+}
+autoplay = "idle"
+playback_default_blend_time = 0.3
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_t7pp6")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

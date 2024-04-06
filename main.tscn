@@ -1,12 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbo7pb316jag"]
+[gd_scene load_steps=10 format=3 uid="uid://dbo7pb316jag"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_h4ehr"]
+[ext_resource type="Script" path="res://main.gd" id="1_1pktn"]
 [ext_resource type="Texture2D" uid="uid://dxhpl1x5r4xot" path="res://assets/kenny_grid/Purple/texture_01.png" id="1_yibmj"]
 [ext_resource type="Texture2D" uid="uid://dou08mawt83mx" path="res://assets/hdrs/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_te2tq"]
-[ext_resource type="Script" path="res://player/player.gd" id="3_cf1t4"]
-[ext_resource type="PackedScene" uid="uid://bsptckql0j5pc" path="res://inventory/inventory.tscn" id="4_ep26l"]
-[ext_resource type="Script" path="res://inventory/ui/inventory_interface.gd" id="5_3lo2m"]
-[ext_resource type="Resource" uid="uid://cplmxx6tks4kh" path="res://inventory/test_inv.tres" id="5_o35a8"]
+[ext_resource type="PackedScene" uid="uid://d2vhohwg8eraw" path="res://player3d/player_3d.tscn" id="4_3kn5a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6dfmy"]
 albedo_texture = ExtResource("1_yibmj")
@@ -24,13 +21,11 @@ sky = SubResource("Sky_yeqiu")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0ml2b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8krsg"]
+bg_color = Color(0.956863, 0.380392, 0.423529, 1)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3ixve"]
-height = 1.2
-
-[node name="world" type="Node3D"]
-script = ExtResource("1_h4ehr")
+[node name="Node" type="Node"]
+script = ExtResource("1_1pktn")
 
 [node name="stage" type="Node3D" parent="."]
 
@@ -53,34 +48,52 @@ environment = SubResource("Environment_3j4gh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env"]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.038
 shadow_enabled = true
 
-[node name="player" type="CharacterBody3D" parent="."]
-script = ExtResource("3_cf1t4")
-invetory_data = ExtResource("5_o35a8")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="default_collision_shape" type="CollisionShape3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_0ml2b")
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 323.0
+offset_top = 155.0
+offset_right = -323.0
+offset_bottom = -155.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="crouch_collision_shape" type="CollisionShape3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600287, 0)
-shape = SubResource("CapsuleShape3D_3ixve")
-disabled = true
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="crouch_raycast" type="RayCast3D" parent="player"]
-target_position = Vector3(0, 2, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
 
-[node name="neck" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Меню"
+horizontal_alignment = 1
 
-[node name="head" type="Node3D" parent="player/neck"]
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
 
-[node name="Camera3D" type="Camera3D" parent="player/neck/head"]
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="Address" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Адрес хоста"
+alignment = 1
 
-[node name="InventoryInterface" type="Control" parent="UI"]
+[node name="HUD" type="Control" parent="CanvasLayer"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -88,11 +101,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_3lo2m")
+mouse_filter = 2
 
-[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("4_ep26l")]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 50.0
-offset_bottom = 50.0
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -38.0
+offset_right = 243.0
+offset_bottom = -11.0
+grow_vertical = 0
+theme_override_styles/fill = SubResource("StyleBoxFlat_8krsg")
+value = 100.0
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player/player.tscn")
+spawn_path = NodePath("..")
+
+[node name="Player3D" parent="." instance=ExtResource("4_3kn5a")]
+
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]

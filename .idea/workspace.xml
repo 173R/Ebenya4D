@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="01138a60-08f7-4a3f-9f31-ed416f8916de" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/assets/atlas/icons.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/atlas/icons.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/kenny_grid/Orange/texture_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/kenny_grid/Orange/texture_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/inventory.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/inventory.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/inventory_data.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/item/item_atlas.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/item/item_data.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/items/apple.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/items/blue_book.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/slot/slot.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/slot/slot.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/slot/slot_data.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/test_inv.tres" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory/ui/inventory_interface.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.gd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/main.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/player/player.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/player/player.gd" beforeDir="false" afterPath="$PROJECT_DIR$/player/player.gd" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2eQ1L74gLYEi1FXKplqIoYKysl5" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "last_opened_file_path": "C:/Users/pelmen",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-467a64f6063b-ee0e143f3e2b-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.11799.228" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>
